@@ -56,8 +56,10 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
-            'Application\Controller\TinEyeSearch' => Controller\TinEyeSearchController::class
         ),
+        'factories' => array(
+            'Application\Controller\TinEyeSearch'  => 'Application\Controller\Factory\TinEyeSearchControllerFactory',
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
