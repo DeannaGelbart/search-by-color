@@ -12,6 +12,8 @@ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
 cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
 ```
 
+The searchable art must be placed under /public/img/art/
+
 
 
 
