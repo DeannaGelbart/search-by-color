@@ -4,7 +4,7 @@ You can see it in action at: ...
 
 Screenshot: ...
 
-Behind the scenes this app makes heavy use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
+Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
 
 Installation
 ------------
