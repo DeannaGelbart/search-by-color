@@ -9,7 +9,7 @@ Behind the scenes this app makes heavy use of the [TinEye MulticolorEngine](http
 Installation
 ------------
 
-Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication).
+Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication), which was the starting point for this app.
 
 After you've followed those, you can install the colorpicker UI library:
 ```
