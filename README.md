@@ -1,23 +1,25 @@
 This webapp lets a user search a collection of images by color.
 
-You can see it in action at ...
+You can see it in action at: ...
 
-It is built on the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
+Screenshot: ...
+
+Behind the scenes this app makes heavy use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
 
 Installation
 ------------
 
 Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication).
 
-If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
-
-Then install the colorpicker:
+After you've followed those, you can install the colorpicker UI library:
 ```
 $ php composer.phar require mjolnic/bootstrap-colorpicker
 $ cp  vendor/mjolnic/bootstrap-colorpicker/dist/js/* public/js/
 $ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
 $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
 ```
+
+If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
 Customization
 -------------
