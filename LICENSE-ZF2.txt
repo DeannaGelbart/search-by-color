@@ -1,3 +1,7 @@
+This search-by-color application was started off from the 
+offical Zend Framework 2 skeleton application which has the
+following license:
+
 Copyright (c) 2005-2015, Zend Technologies USA, Inc.
 All rights reserved.
 
