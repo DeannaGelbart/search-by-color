@@ -4,7 +4,7 @@ Installation
 
 Follow the installation instructions from https://github.com/zendframework/ZendSkeletonApplication
 
-Install the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. 
+Install the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. It's already in the project's composer.json but you'll need to run "composer.phar update" to get it into the autoloader config.
 
 Then install the colorpicker:
 ```
