@@ -4,7 +4,7 @@ Installation
 
 Follow the installation instructions from https://github.com/zendframework/ZendSkeletonApplication
 
-If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. It's already in the project's composer.json but you'll need to run "composer.phar update" to get it into the autoloader config.
+If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
 Then install the colorpicker:
 ```
