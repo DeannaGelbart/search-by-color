@@ -14,9 +14,9 @@ $ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
 $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
 ```
 
-The searchable art must be placed under public/img/art/
+The art images must be placed under public/img/art/
 
-The thumbnails must be placed under public/img/art/thumbs. They can be created using ImageMagick:
+The thumbnails must be placed under public/img/art/thumbs, with the same filenames as the full size images. The thumbnails can be created using ImageMagick:
 ```
 $ cd public/img/art
 $ mkdir thumbs
