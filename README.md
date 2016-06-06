@@ -26,22 +26,22 @@ Customization
 
 You have to rename config/autoload/local.php.dist to config/autoload/local.php. If you are using TinEye based search, place your TinEye API username and password there.
 
-You can customize the UI text by editing module/Application/view/application/index/index.phtml.
-
 The art images must be placed under public/img/art/ 
 
-The thumbnails must be placed under public/img/art/thumbs, with the same filenames as the full size images. The thumbnails can be created using ImageMagick:
+For TinEye based search, you can add images to the TinEye index like this:
+```
+$ cd public/img/art
+$ for f in *jpg *JPG  *jpeg ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
+```
+
+Thumbnails must be placed under public/img/art/thumbs, with the same filenames as the full size images. The thumbnails can be created using ImageMagick:
 ```
 $ cd public/img/art
 $ mkdir thumbs
 $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 -format jpg -quality 75 -path thumbs *.jpg *.JPG *.jpeg *.JPEG
 ```
 
-You can add images to the TinEye search index as follows
-```
-$ cd public/img/art
-$ for f in *jpg *JPG  *jpeg ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
-```
+You can customize the UI text by editing module/Application/view/application/index/index.phtml.
 
 
 
