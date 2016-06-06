@@ -4,6 +4,8 @@ Installation
 
 Follow the installation instructions from https://github.com/zendframework/ZendSkeletonApplication
 
+Install the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. 
+
 Then install the colorpicker:
 ```
 $ php composer.phar require mjolnic/bootstrap-colorpicker
