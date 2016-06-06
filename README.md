@@ -2,7 +2,7 @@
 Installation
 ------------
 
-Follow the installation instructions from https://github.com/zendframework/ZendSkeletonApplication
+This project was started from the Zend Skeleton Application so start by following the installation instructors for that: https://github.com/zendframework/ZendSkeletonApplication
 
 If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
