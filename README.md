@@ -35,11 +35,11 @@ $ mkdir thumbs
 $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 -format jpg -quality 75 -path thumbs *.jpg *.JPG *.jpeg *.JPEG
 ```
 
-You can add images to the TinEye search index
-for f in *jpg *JPG  *jpeg ; do curl http://focalfilter:PASSWORD@multicolorengine.tineye.com/focalfilter/rest/add/ -F "image=@$f;filename=$f" ; done
-
-   curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F  \
-      "image=@image.jpg;filename=image.jpg"
+You can add images to the TinEye search index as follows
+```
+$ cd public/img/art
+$ for f in *jpg *JPG  *jpeg ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
+```
 
 
 
