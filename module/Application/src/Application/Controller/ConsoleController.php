@@ -4,6 +4,8 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Request as ConsoleRequest;
+use Application\Controller\TinEyeProxyController;
+use Application\ControllerFactory\TinEyeProxyControllerFactory;
 
 
 class ConsoleController extends AbstractActionController

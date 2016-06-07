@@ -6,8 +6,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use TinEye\MulticolorEngineRequest;
 
-
-class TinEyeController extends AbstractActionController
+// Browser-side JavaScript cannot call the TinEye API directly due to TinEye's security model.
+// This class provides an interface to allow it.
+class TinEyeProxyController extends AbstractActionController
 {
     private $tinEyeCredentials;
 
@@ -39,7 +40,6 @@ class TinEyeController extends AbstractActionController
     }
 
     // This JSON web service performs a TinEye API search by color.
-    // Browser-side JavaScript cannot call the TinEye API directly due to TinEye's security model.
     //
     // This service takes a single GET parameter named color which is an RGB color expressed as 6 hex digits.
     //

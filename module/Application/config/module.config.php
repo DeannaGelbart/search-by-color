@@ -74,7 +74,7 @@ return array(
             'Application\Controller\Console' => Controller\ConsoleController::class,
         ),
         'factories' => array(
-            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeControllerFactory',
+            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeProxyControllerFactory',
         )
     ),
     'view_manager' => array(
