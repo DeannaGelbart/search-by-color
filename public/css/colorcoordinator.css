@@ -4,12 +4,16 @@ body {
     background-color: #eeeeee;
 }
 
-.gallery-prompt {
-    margin-top: 10px;
-}
-
 .inl-bl {
     display: inline-block;
+}
+
+#gallery-prompt {
+    padding-top: 20px;
+}
+
+.gallery-thumbnail {
+    padding: 5px;
 }
 
  .colorpicker .colorpicker-saturation {

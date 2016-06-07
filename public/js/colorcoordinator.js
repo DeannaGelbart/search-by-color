@@ -46,7 +46,7 @@ $(function() {
                     var thumbnailPath = '/img/art/thumbs/' + encodeURIComponent(data.matches[imageIndex].filename);
 
                     var a = '<a href="' + imagePath + '" title="' + name + '" data-gallery>';
-                    var img = '<img src="' + thumbnailPath + '" alt="' + name + '">';
+                    var img = '<img src="' + thumbnailPath + '" alt="' + name + '" class="gallery-thumbnail">';
 
                     $('#links').append(a + img + '</a>');
                 }
