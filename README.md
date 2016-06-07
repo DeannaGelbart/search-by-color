@@ -19,12 +19,12 @@ $ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
 $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
 ```
 
-If you are using TinEye based search then you have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
+You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
 Customization
 -------------
 
-You have to rename config/autoload/local.php.dist to config/autoload/local.php. If you are using TinEye based search, place your TinEye API username and password there.
+You have to rename config/autoload/local.php.dist to config/autoload/local.php. Place your TinEye API username and password there.
 
 The art images must be placed under public/img/art/ 
 
