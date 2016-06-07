@@ -4,6 +4,10 @@ body {
     background-color: #eeeeee;
 }
 
+.jumbotron {
+    padding-top: 0px;
+}
+
 .inl-bl {
     display: inline-block;
 }
