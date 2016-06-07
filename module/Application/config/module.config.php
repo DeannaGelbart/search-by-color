@@ -27,12 +27,27 @@ return array(
                 'options' => array(
                     'route'    => '/tin-eye-search',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\TinEyeSearch',
+                        'controller' => 'Application\Controller\TinEye',
                         'action'     => 'search',
                     ),
                 ),
             ),
         ),
+    ),
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'console-extract-colors' => array(
+                    'options' => array(
+                        'route'    => 'console extract-colors <imageFilename> <imageName>',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Console',
+                            'action'     => 'extractColors'
+                        )
+                    )
+                )
+            )
+        )
     ),
     'service_manager' => array(
         'abstract_factories' => array(
@@ -56,9 +71,10 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
+            'Application\Controller\Console' => Controller\ConsoleController::class,
         ),
         'factories' => array(
-            'Application\Controller\TinEyeSearch'  => 'Application\Controller\Factory\TinEyeSearchControllerFactory',
+            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeControllerFactory',
         )
     ),
     'view_manager' => array(
@@ -78,13 +94,6 @@ return array(
         ),
         'strategies' => array(
             'ViewJsonStrategy',
-        ),
-    ),
-    // Placeholder for console routes
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-            ),
         ),
     ),
 );

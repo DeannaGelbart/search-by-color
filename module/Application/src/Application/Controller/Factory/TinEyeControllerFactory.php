@@ -4,16 +4,16 @@ namespace Application\Controller\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Application\Controller\TinEyeSearchController;
+use Application\Controller\TinEyeController;
 
 
-class TinEyeSearchControllerFactory implements FactoryInterface
+class TinEyeControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $sl = $serviceLocator->getServiceLocator();
  
-        $controller = new TinEyeSearchController($sl->get('config')['tineye']);
+        $controller = new TinEyeController($sl->get('config')['tineye']);
         return $controller;
     }
 }

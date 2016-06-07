@@ -7,7 +7,7 @@ use Zend\View\Model\JsonModel;
 use TinEye\MulticolorEngineRequest;
 
 
-class TinEyeSearchController extends AbstractActionController
+class TinEyeController extends AbstractActionController
 {
     private $tinEyeCredentials;
 
