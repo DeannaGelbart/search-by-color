@@ -39,8 +39,9 @@ class TinEyeSearchController extends AbstractActionController
     }
 
     // This JSON web service performs a TinEye API search by color.
+    // Browser-side JavaScript cannot call the TinEye API directly due to TinEye's security model.
     //
-    // It takes a single GET parameter named color which is an RGB color expressed as 6 hex digits.
+    // This service takes a single GET parameter named color which is an RGB color expressed as 6 hex digits.
     //
     // Example: a GET request to "/tin-eye-search?color=836cc7" will search for color 836cc7.
     //
