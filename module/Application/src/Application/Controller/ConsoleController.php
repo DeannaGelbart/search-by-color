@@ -2,22 +2,11 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Request as ConsoleRequest;
-use Application\Service\TinEyeServiceInterface;
 use Zend\View\Model\ConsoleModel;
 
-class ConsoleController extends AbstractActionController
+class ConsoleController extends AbstractTinEyeClientController
 {
-    private $tinEyeService;
-    private $tinEyeConfig;
-
-    public function __construct(TinEyeServiceInterface $tinEyeService, $tinEyeConfig)
-    {
-        $this->tinEyeService = $tinEyeService;
-        $this->tinEyeConfig = $tinEyeConfig;
-    }
-
     // This command line console action extracts the dominant colors from an image using the TinEye API.
     //
     // Usage:

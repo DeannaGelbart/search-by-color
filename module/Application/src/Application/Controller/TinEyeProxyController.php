@@ -8,17 +8,8 @@ use Application\Service\TinEyeServiceInterface;
 
 // Browser-side JavaScript cannot call the TinEye API directly due to TinEye's security model.
 // This controller provides an interface to allow it.
-class TinEyeProxyController extends AbstractActionController
+class TinEyeProxyController extends AbstractTinEyeClientController
 {
-    private $tinEyeService;
-    private $tinEyeConfig;
-
-    public function __construct(TinEyeServiceInterface $tinEyeService, $tinEyeConfig)
-    {
-        $this->tinEyeService = $tinEyeService;
-        $this->tinEyeConfig = $tinEyeConfig;
-    }
-
     private function errorResponse($message)
     {
         $this->response->setStatusCode(500);
