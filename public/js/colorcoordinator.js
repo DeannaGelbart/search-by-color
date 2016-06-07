@@ -35,7 +35,12 @@ $(function() {
                 }
 
                 // Create the image gallery.
-                for (imageIndex = 0; imageIndex < data.match_count; imageIndex++) {
+                var maxImagesToShow = 20;
+                var count = data.match_count;
+                if (count > maxImagesToShow) {
+                    count = maxImagesToShow;
+                }
+                for (imageIndex = 0; imageIndex < count; imageIndex++) {
                     var name = data.matches[imageIndex].name;
                     var imagePath = '/img/art/' + encodeURIComponent(data.matches[imageIndex].filename);
                     var thumbnailPath = '/img/art/thumbs/' + encodeURIComponent(data.matches[imageIndex].filename);
