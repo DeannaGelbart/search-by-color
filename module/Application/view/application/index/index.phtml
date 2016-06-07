@@ -4,41 +4,15 @@
 The vertical bar picks the hue, and the square box adjusts the saturation.</p>
 
 <p>(Want more color ideas? Try this
-    <a target="_blank" href="http://www.decorlove.com/how-to-choose-a-color-scheme-the-basics-of-color-coordination/">
-        intro to color in interior decorating</a>.)</p>
+<a target="_blank" href="http://www.decorlove.com/how-to-choose-a-color-scheme-the-basics-of-color-coordination/">
+intro to color in interior decorating</a>.)</p>
 
+<!-- Bootstrap Colorpicker (https://github.com/mjolnic/bootstrap-colorpicker) -->
 <div id="colorpicker" class="inl-bl"></div>
 
-<script>
-    $(function() {
-        // Set up Bootstrap colorpicker (http://mjolnic.com/bootstrap-colorpicker/)
-        $('#colorpicker').colorpicker({
-            color: '#625194',
-            container: true,
-            inline: true,
-            format: 'hex',
-            customClass: 'colorpicker',
-            sliders: {
-                saturation: {
-                    maxLeft: 200,
-                    maxTop: 200
-                },
-                hue: {
-                    maxTop: 200
-                }
-            }
-        });
+<p id="gallery-prompt" class="gallery-prompt"></p>
 
-        $('#colorpicker').colorpicker().on('changeColor', function (e) {
-            console.log("Chose color: " + e.color.toHex());
-        });
-    });
-</script>
-
-<p id="gallery-prompt-found" class="gallery-prompt">Here is the matching art. Select a thumbnail to see a larger image.</p>
-<p id="gallery-prompt-none-found" class="gallery-prompt">No matching works found. Please try another color.</p>
-
-<!-- Set up the Bootstrap Image Gallery (https://github.com/blueimp/Bootstrap-Image-Gallery) -->
+<!-- Boilerplate HTML skeleton for the Bootstrap Image Gallery (https://github.com/blueimp/Bootstrap-Image-Gallery) -->
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
     <div class="slides"></div>
@@ -73,15 +47,67 @@ The vertical bar picks the hue, and the square box adjusts the saturation.</p>
     </div>
 </div>
 
+<!-- Images for the image gallery -->
 <div id="links">
-    <a href="/img/art/Jerusalem.jpg" title="Jerusalem" data-gallery>
-        <img src="/img/art/thumbs/Jerusalem.jpg" alt="Jerusalem">
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
     </a>
-    <a href="/img/art/Hong_Kong.JPG" title="Hong_Kong" data-gallery>
-        <img src="/img/art/thumbs/Hong_Kong.JPG" alt="Hong_Kong">
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
     </a>
-    <a href="/img/art/Huleh.jpg" title="Huleh" data-gallery>
-        <img src="/img/art/thumbs/Huleh.jpg" alt="Huleh">
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
+    </a>
+    <a href="" title="" data-gallery>
+        <img src="" alt="">
     </a>
 </div>
 

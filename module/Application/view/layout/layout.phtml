@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath('css/style.css'))
+                        ->prependStylesheet($this->basePath('css/colorcoordinator.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-image-gallery.min.css'))
                         ->prependStylesheet('//blueimp.github.io/Gallery/css/blueimp-gallery.min.css')
                         ->prependStylesheet($this->basePath('css/bootstrap-colorpicker.min.css'))
@@ -39,6 +39,10 @@
         </div>
 
 
-        <?php echo $this->inlineScript() ?>
+        <?php echo $this->inlineScript()
+            ->prependFile($this->basePath('js/colorcoordinator.js'))
+        ; ?>
+
+
     </body>
 </html>
