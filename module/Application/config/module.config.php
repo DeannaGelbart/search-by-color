@@ -71,10 +71,10 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
-            'Application\Controller\Console' => Controller\ConsoleController::class,
         ),
         'factories' => array(
             'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeProxyControllerFactory',
+            'Application\Controller\Console'  => 'Application\Controller\Factory\ConsoleControllerFactory',
         )
     ),
     'view_manager' => array(

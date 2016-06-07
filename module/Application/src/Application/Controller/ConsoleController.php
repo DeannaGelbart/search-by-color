@@ -4,12 +4,19 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Request as ConsoleRequest;
-use Application\Controller\TinEyeProxyController;
-use Application\ControllerFactory\TinEyeProxyControllerFactory;
-
+use Application\Service\TinEyeServiceInterface;
+use Zend\View\Model\ConsoleModel;
 
 class ConsoleController extends AbstractActionController
 {
+    private $tinEyeService;
+    private $tinEyeConfig;
+
+    public function __construct(TinEyeServiceInterface $tinEyeService, $tinEyeConfig)
+    {
+        $this->tinEyeService = $tinEyeService;
+        $this->tinEyeConfig = $tinEyeConfig;
+    }
 
     // This command line console action extracts the dominant colors from an image using the TinEye API.
     //
@@ -31,6 +38,7 @@ class ConsoleController extends AbstractActionController
     public function extractColorsAction()
     {
         $request = $this->getRequest();
+        $model = new ConsoleModel();
 
         if (!$request instanceof ConsoleRequest){
             throw new \RuntimeException('This action can only be used from the command line console.');
@@ -39,6 +47,25 @@ class ConsoleController extends AbstractActionController
         $filename = $request->getParam('imageFilename');
         $name = $request->getParam('imageName');
 
-        return "Done! Got filename $filename for name $name";
+        // Call TinEye API to extract colors:
+        //   https://services.tineye.com/developers/multicolorengine/methods/extract_image_colors.html
+        $tinEyeApi = $this->tinEyeService->createMulticolorEngineRequest($this->tinEyeConfig);
+        /*
+
+        TODO
+
+        $tinEyeJson = $tinEyeApi->extract_image_colors_image(...);
+
+        if ($tinEyeJson->status == 'fail' || $tinEyeJson->status == 'warn') {
+             $model->setErrorLevel(1);
+             $model->setResult('TinEye API error: ' + join('; ', $tinEyeJson->error));
+             return $model;
+        }
+
+        */
+
+        $model->setErrorLevel(0);
+        $model->setResult("Done! Got filename $filename for name $name");
+        return $model;
     }
 }

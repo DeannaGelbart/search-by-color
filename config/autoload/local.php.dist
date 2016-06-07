@@ -12,7 +12,7 @@
  */
 
 return array(
-    'tineye' => array(
+    'tinEye' => array(
         'username' => 'focalfilter',
         'password' => 'secret'
     ),

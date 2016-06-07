@@ -4,17 +4,19 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
-use TinEye\MulticolorEngineRequest;
+use Application\Service\TinEyeServiceInterface;
 
 // Browser-side JavaScript cannot call the TinEye API directly due to TinEye's security model.
-// This class provides an interface to allow it.
+// This controller provides an interface to allow it.
 class TinEyeProxyController extends AbstractActionController
 {
-    private $tinEyeCredentials;
+    private $tinEyeService;
+    private $tinEyeConfig;
 
-    public function __construct($tinEyeCredentials)
+    public function __construct(TinEyeServiceInterface $tinEyeService, $tinEyeConfig)
     {
-        $this->tinEyeCredentials = $tinEyeCredentials;
+        $this->tinEyeService = $tinEyeService;
+        $this->tinEyeConfig = $tinEyeConfig;
     }
 
     private function errorResponse($message)
@@ -65,12 +67,9 @@ class TinEyeProxyController extends AbstractActionController
             return $this->errorResponse('The color you pass to this service must be RGB represented as 6 hex digits.');
         }
 
-        // Call TinEye API:
+        // Call TinEye API search by color:
         //   https://services.tineye.com/developers/multicolorengine/methods/color_search.html
-        // The TinEye PHP client library returns the JSON format documented at that link.
-        $tinEyeUrl = 'http://multicolorengine.tineye.com/' . $this->tinEyeCredentials['username'] . '/rest/';
-        $tinEyeApi = new MulticolorEngineRequest($tinEyeUrl,
-            $this->tinEyeCredentials['username'], $this->tinEyeCredentials['password']);
+        $tinEyeApi = $this->tinEyeService->createMulticolorEngineRequest($this->tinEyeConfig);
         $tinEyeJson = $tinEyeApi->search_color(array($color), array(100), false, false);
 
         if ($tinEyeJson->status == 'fail' || $tinEyeJson->status == 'warn') {
@@ -82,11 +81,9 @@ class TinEyeProxyController extends AbstractActionController
             foreach ($tinEyeJson->result as $result) {
                 $name = $this->readableName($result->filepath);
 
-                // Guard against broken links due to uppercase/lowercase differences, etc.
+                // Guard against broken links due to uppercase/lowercase differences.
                 $filepath = $result->filepath;
                 $filepath = str_replace(".JPG", ".jpg", $filepath);
-                $filepath = str_replace(".JPEG", ".jpg", $filepath);
-                $filepath = str_replace(".jpeg", ".jpg", $filepath);
 
                 $matches[] = array('name' => $name,
                     'filename' => $filepath,
