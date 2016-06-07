@@ -34,27 +34,17 @@ $(function() {
 
                 }
 
-                // Loop over the image slots in the HTML.
-                var counter = 0;
-                $('#links > a').each(function () {
-                    if (counter < data.match_count) {
-                        var name = data.matches[counter].name;
-                        var imagePath = '/img/art/' + encodeURIComponent(data.matches[counter].filename);
-                        var thumbnailPath = '/img/art/thumbs/' + encodeURIComponent(data.matches[counter].filename);
+                // Create the image gallery.
+                for (imageIndex = 0; imageIndex < data.match_count; imageIndex++) {
+                    var name = data.matches[imageIndex].name;
+                    var imagePath = '/img/art/' + encodeURIComponent(data.matches[imageIndex].filename);
+                    var thumbnailPath = '/img/art/thumbs/' + encodeURIComponent(data.matches[imageIndex].filename);
 
-                        $(this).attr('title', name);
-                        $(this).attr('href', imagePath);
-                        //$(this).html(data.matches[counter].name);
-                        $(this).html('<img src="' + thumbnailPath + '" alt="' + name + '">');
-                    } else {
-                        $(this).attr('title', '');
-                        $(this).attr('href', '');
-                        $(this).html('<img src="" alt="">');
-                    }
+                    var a = '<a href="' + imagePath + '" title="' + name + '" data-gallery>';
+                    var img = '<img src="' + thumbnailPath + '" alt="' + name + '">';
 
-                    counter++;
-                });
-
+                    $('#links').append(a + img + '</a>');
+                }
             },
             error: function(err) {
                 $('#gallery-prompt').text('The search server returned an error: "' + err.responseJSON.message + '"');
@@ -65,14 +55,10 @@ $(function() {
     $('#colorpicker').colorpicker().on('changeColor', function (e) {
         var color = e.color.toHex().replace('#', '');
 
-        // Clear the gallery
-        $('#links > a').each(function () {
-            $(this).attr('title', '');
-            $(this).attr('href', '');
-            $(this).html('<img src="" alt="">');
-        });
+        // Clear the image gallery.
+        $('#links').empty();
 
-        // Perform color search
+        // Perform color search.
         search(color);
     });
 
