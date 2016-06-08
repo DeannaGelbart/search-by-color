@@ -44,7 +44,7 @@ for i in public/img/art/thumbs/*jpg ;  do php public/index.php console extract-c
 ```
 
 If you want users to be connected to TinEye search instead of this project's homegrown search code, 
-you'll need to make sure public/js/colorcoordinator.js is calling /tin-eye-search instead of /search.  And you'll need to put the images in the TinEye index which you can do like this:
+have public/js/colorcoordinator.js call /tin-eye-search instead of /search.  And you'll need to put the images in the TinEye index which you can do like this:
 ```
 $ cd public/img/art/thumbs
 $ for f in *jpg *JPG ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
