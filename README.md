@@ -13,21 +13,6 @@ Guide to the source code
 
 (reword, explain what it's used for and what it's not) Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
 
-Installing this project on your own server
-------------------------------------------
-
-Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication), which was the starting point for this app.
-
-After you've followed those, you can install the colorpicker UI library:
-```
-$ php composer.phar require mjolnic/bootstrap-colorpicker
-$ cp  vendor/mjolnic/bootstrap-colorpicker/dist/js/* public/js/
-$ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
-$ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
-```
-
-You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
-
 Customizing this project for your needs
 ---------------------------------------
 
@@ -52,6 +37,21 @@ You also have the option of using TinEye to handle the user's searches. This is 
 $ cd public/img/art/thumbs
 $ for f in *jpg *JPG ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
 ```
+
+Getting the project code running on your server
+-----------------------------------------------
+
+Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication), which was the starting point for this app.
+
+After you've followed those, you can install the colorpicker UI library:
+```
+$ php composer.phar require mjolnic/bootstrap-colorpicker
+$ cp  vendor/mjolnic/bootstrap-colorpicker/dist/js/* public/js/
+$ cp  vendor/mjolnic/bootstrap-colorpicker/dist/css/* public/css/
+$ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker public/img/
+```
+
+You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
 
 
