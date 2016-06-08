@@ -11,9 +11,7 @@ This webapp uses its own code to process the user's searches, but the above-ment
 Guide to the source code
 ------------------------
 
-(tests). This searches... 
-
-(reword, explain what it's used for and what it's not) Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
+... just an overview is fine ... can give the location of the tests ...
 
 Customizing this project for your needs
 ---------------------------------------
