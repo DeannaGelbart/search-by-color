@@ -26,6 +26,7 @@ $ cd public/img/art
 $ mkdir thumbs
 $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 -format jpg -quality 75 -path thumbs *.jpg *.JPG
 ```
+This webapp assumes both the original image files and the thumbnails have a .jpg suffix. 
 
 This webapp uses its own search code, but it relies on TinEye to extract the dominant colors from the images ahead of time. You must have a TinEye API subscription for this. Rename config/autoload/local.php.dist to config/autoload/local.php, and place your TinEye API username and password there. You can then extract the colors with the following command. This data is stored in a CSV file in the ZF2 data folder.
 ```
