@@ -10,6 +10,7 @@ use Zend\View\Model\JsonModel;
 // For instructions on how to create the file, see https://github.com/dgelbart/colorcoordinator-zf2/blob/master/README.md
 class SearchController extends AbstractSearchController
 {
+    const MAX_IMAGES_TO_RETURN = 20;
     const MINIMUM_COLOR_WEIGHT = 10;
     const MINIMUM_IMAGE_SCORE = 3;
 
@@ -53,9 +54,18 @@ class SearchController extends AbstractSearchController
         $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE);
         usort($matches, array($this, "compareMatchesByScore"));
 
+        $matchesToReturn = array();
+        $returnCount = 0;
+        foreach ($matches as $match) {
+            $returnCount++;
+            if ($returnCount <= self::MAX_IMAGES_TO_RETURN) {
+                $matchesToReturn[] = $match;
+            }
+        }
+
         return new JsonModel(array(
-            'match_count' => count($matches),
-            'matches' => $matches
+            'match_count' => count($matchesToReturn),
+            'matches' => $matchesToReturn
         ));
     }
 }
