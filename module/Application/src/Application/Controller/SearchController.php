@@ -10,38 +10,45 @@ use Zend\View\Model\JsonModel;
 // For how to generate the file, see https://github.com/dgelbart/colorcoordinator-zf2/blob/master/README.md
 class SearchController extends AbstractSearchController
 {
-    const DOMINANT_COLORS_CSV_FILE = 'data/extracted-colors.csv';
+    const MAX_IMAGES_TO_RETURN = 20;
+    const MINIMUM_COLOR_WEIGHT = 10;
+    const MINIMUM_IMAGE_SCORE = 5;
+
+    private $imageService;
+
+    public function __construct($imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     // This JSON web service performs a search by color.
-    // For documentation see AbstractSearchController.searchAction.
+    // Please see the comments for AbstractSearchController.searchAction.
     public function searchAction()
     {
         if (!isset($_GET['color'])) {
             return $this->noColorError();
         }
         $searchColor = $_GET['color'];
-        if (!($this->isValidColor($searchColor))) {
+        if (!($this->imageService->isValidHexRgbColor($searchColor))) {
             return $this->badColorFormatError();
         }
 
-        $colorData = $this->utilitiesService->readColorCsv(self::DOMINANT_COLORS_CSV_FILE);
-        if (isset($colorData['error'])) {
-            return $this->errorResponse($colorData['error']);
+        // Read the entire list of images' dominant colors. In future we may want to cache this list.
+        $imagesDominantColors = $this->imageService->readColorCsv('data/extracted-colors.csv', self::MINIMUM_COLOR_WEIGHT);
+        if (isset($imagesDominantColors['error'])) {
+            return $this->errorResponse($imagesDominantColors['error']);
         }
 
-        // TODO
-        // find the closest matching color.
-        // if colordistance still > threshold then not this image.
-        // then take weight * 1/max(colorDistance, 0.001) as the score for each image
-        // take top N images
+        // remember to change .JPG to .jpg --> actually we could do this when reading the csv
+        // "when going from Mac OS to Linux" 
+        
+        $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE);
+        
+        // Now we need to sort by score, and only take the top N scoring images. 
+        // self::MAX_IMAGES_TO_RETURN
 
-
-        $matchCount = 0;
-        $matches = array();
-
-        // $apiResult is now the output of json_decode on the TinEye API response.
         return new JsonModel(array(
-            'match_count' => $matchCount,
+            'match_count' => count($matches),
             'matches' => $matches
         ));
     }

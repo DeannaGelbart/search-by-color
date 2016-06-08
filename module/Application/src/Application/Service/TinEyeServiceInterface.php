@@ -2,7 +2,7 @@
 
 namespace Application\Service;
 
-// Interface provided for testability.
+// Wrap the TinEye PHP client library to allow controller testability through injection.
 interface TinEyeServiceInterface
 {
     // Create a ready-to-use MulticolorEngineRequest.

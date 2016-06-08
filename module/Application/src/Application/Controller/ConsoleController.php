@@ -6,24 +6,20 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\View\Model\ConsoleModel;
 use TinEye\Image;
+use Application\Service\ImageService;
 
 
 class ConsoleController extends AbstractActionController
 {
-    private $utilitiesService;
+    private $imageService;
     private $tinEyeService;
     private $tinEyeConfig;
 
-    public function __construct($utilitiesService, $tinEyeService, $tinEyeConfig)
+    public function __construct($imageService, $tinEyeService, $tinEyeConfig)
     {
-        $this->utilitiesService = $utilitiesService;
+        $this->imageService = $imageService;
         $this->tinEyeService = $tinEyeService;
         $this->tinEyeConfig = $tinEyeConfig;
-    }
-
-    public function rgbToHex($rgb)
-    {
-        return sprintf('%02x', $rgb[0]) . sprintf('%02x', $rgb[1]) . sprintf('%02x', $rgb[2]);
     }
 
     // This command line console action extracts the dominant colors from an image using the TinEye API.
@@ -36,7 +32,7 @@ class ConsoleController extends AbstractActionController
     // The output will be in CSV format with the following columns:
     //
     // Image Filename,Image Name,Color1,Weight1,...,Color10,Weight10
-    
+    //
     // where Color<n> and Percent<n> are the hex value and weight (importance) for dominant color n.
     // The sort order of the colors keeps similar colors together, rather than being in order of weight.
     // The number of colors may be less than 10.
@@ -56,7 +52,7 @@ class ConsoleController extends AbstractActionController
         $filename = $request->getParam('imageFilename');
         $name = $request->getParam('imageName');
         if (!isset($name)) {
-            $name = $this->utilitiesService->readableName($filename);
+            $name = $this->imageService->readableName($filename);
         }
 
         $image = new Image($filename, '', basename($filename));
@@ -75,7 +71,7 @@ class ConsoleController extends AbstractActionController
 
         $colors = array();
         foreach ($tinEyeJson->result as $result) {
-            $colors[] = $this->rgbToHex($result->color) . ',' . $result->weight;
+            $colors[] = $this->imageService->rgbArrayToHex($result->color) . ',' . $result->weight;
         }
 
         $model->setErrorLevel(0);
