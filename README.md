@@ -59,11 +59,11 @@ You then have to place the [TinEye PHP  client library](https://services.tineye.
 Legal
 -----
 
-TinEye is a copyright of Idée Inc.
+TinEye is owned by Idée Inc. and any uses of the TinEye API through the colorcoordinator-zf2 project must respect Idée's terms of service.
 
-All third-party code used in this colorcoordinator-zf2 project is under the license terms of the copyright holders.
+All third-party code used in the colorcoordinator-zf2 project is under the license terms of the copyright holders.
 
-The code written for this colorcoordinator-zf2 project is copyright David Gelbart and can be used under the MIT License. 
+The code written for the colorcoordinator-zf2 project is copyright David Gelbart and can be used under the MIT License. 
 
 
 
