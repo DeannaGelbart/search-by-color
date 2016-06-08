@@ -1,6 +1,6 @@
 This webapp lets a user search a collection of images by color.
 
-[Screenshot](http://i.imgur.com/rcRshkZ.png)
+[Screenshot](http://i.imgur.com/ANOpHZF.png)
 
 [Try your own searches](colorcoordinator.focalfilter.com)
 
