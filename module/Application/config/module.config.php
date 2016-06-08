@@ -39,7 +39,7 @@ return array(
             'routes' => array(
                 'console-extract-colors' => array(
                     'options' => array(
-                        'route'    => 'console extract-colors <imageFilename> <imageName>',
+                        'route'    => 'console extract-colors <imageFilename> [<imageName>]',
                         'defaults' => array(
                             'controller' => 'Application\Controller\Console',
                             'action'     => 'extractColors'

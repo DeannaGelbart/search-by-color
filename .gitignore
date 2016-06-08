@@ -14,3 +14,4 @@ vendor
 composer.phar
 bootstrap-colorpicker
 bootstrap-colorpicker*
+extracted-colors.csv

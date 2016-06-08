@@ -18,20 +18,7 @@ class TinEyeProxyController extends AbstractTinEyeClientController
         ));
         return $error;
     }
-
-    // Reconstruct a more human readable name from an image filename.
-    public function readableName($filename)
-    {
-        $name = str_replace(".jpg", "", $filename);
-        $name = str_replace(".JPG", "", $name);
-        $name = str_replace(".jpeg", "", $name);
-
-        // Whether this mapping of _ is useful will depend on your data set.
-        $name = str_replace("_", " ", $name);
-
-        return $name;
-    }
-
+    
     // This JSON web service performs a TinEye API search by color.
     //
     // This service takes a single GET parameter named color which is an RGB color expressed as 6 hex digits.
@@ -60,6 +47,7 @@ class TinEyeProxyController extends AbstractTinEyeClientController
 
         // Call TinEye API search by color:
         //   https://services.tineye.com/developers/multicolorengine/methods/color_search.html
+        //   https://services.tineye.com/library/php/docs/classMulticolorEngineRequest.html
         $tinEyeApi = $this->tinEyeService->createMulticolorEngineRequest($this->tinEyeConfig);
         $tinEyeJson = $tinEyeApi->search_color(array($color), array(100), false, false);
 
