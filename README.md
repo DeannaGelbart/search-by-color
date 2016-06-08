@@ -32,7 +32,7 @@ This webapp uses its own search code, but it relies on TinEye to extract the dom
 for i in public/img/art/thumbs/*jpg ;  do php public/index.php console extract-colors $i >> data/extracted-colors.csv; done
 ```
 
-You also have the option of using TinEye to handle the user's searches. This is not the default but there is already a controller (TinEyeSearchController) in the projeect that will do this. You have to change public/js/colorcoordinator.js call /tin-eye-search instead of /search.  And you'll need to put the images in the TinEye index which you can do like this:
+You also have the option of using TinEye to handle the user's searches. This is not the default but there is already a controller (TinEyeSearchController) in the project that will do this. You have to change public/js/colorcoordinator.js to call /tin-eye-search instead of /search.  And you'll need to put the images in the TinEye index which you can do like this:
 ```
 $ cd public/img/art/thumbs
 $ for f in *jpg *JPG ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
