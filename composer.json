@@ -5,6 +5,10 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
-        "mjolnic/bootstrap-colorpicker": "^2.3"
+        "mjolnic/bootstrap-colorpicker": "^2.3",
+        "hasbridge/php-color": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
     }
 }

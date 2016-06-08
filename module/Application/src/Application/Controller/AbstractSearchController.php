@@ -35,7 +35,7 @@ abstract class AbstractSearchController extends AbstractActionController
     protected function isValidColor($color)
     {
         // Check for 6 hex digits. 
-        return preg_match('/^[0-9A-Za-z]{6}$/', $color);    
+        return preg_match('/^[0-9A-Fa-f]{6}$/', $color);
     }
 
     protected function badColorFormatError()
