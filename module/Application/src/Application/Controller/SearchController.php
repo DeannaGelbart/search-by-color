@@ -4,10 +4,10 @@ namespace Application\Controller;
 
 use Zend\View\Model\JsonModel;
 
-// This class provides a search-by-color service using homegrown search code. 
+// This class provides a search-by-color web service.
 //
 // It requires a colorcoordinator-zf2/data/extracted-colors.csv file containing the list of dominant colors for each image.
-// For how to generate the file, see https://github.com/dgelbart/colorcoordinator-zf2/blob/master/README.md
+// For instructions on how to create the file, see https://github.com/dgelbart/colorcoordinator-zf2/blob/master/README.md
 class SearchController extends AbstractSearchController
 {
     const MAX_IMAGES_TO_RETURN = 20;
@@ -21,7 +21,6 @@ class SearchController extends AbstractSearchController
         $this->imageService = $imageService;
     }
 
-    // This JSON web service performs a search by color.
     // Please see the comments for AbstractSearchController.searchAction.
     public function searchAction()
     {
@@ -38,9 +37,6 @@ class SearchController extends AbstractSearchController
         if (isset($imagesDominantColors['error'])) {
             return $this->errorResponse($imagesDominantColors['error']);
         }
-
-        // remember to change .JPG to .jpg --> actually we could do this when reading the csv
-        // "when going from Mac OS to Linux" 
         
         $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE);
         

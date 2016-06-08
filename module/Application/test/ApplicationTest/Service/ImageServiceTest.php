@@ -79,16 +79,28 @@ class ImageServiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('71', $colors[0]['weight']);
     }
 
-    public function testScoreImageSetWithExactMatchingColor()
+    public function testScoreImageSetWithCloselyMatchingColor()
     {
         $images = $this->service->readColorCsv('data/test/extracted-colors-test.csv', 10);
 
-        // This exact color is in the CSV with a large weight, therefore the image it's in should get a large score.
-        $searchColor = '252029';
+        // Almost this exact color is in the CSV with a large weight, therefore the image it's in should match and
+        // should get a large score.
+        $searchColor = '242128';
 
         $scores = $this->service->scoreImageSet($searchColor, $images);
-        $this->assertEquals(2, count($scores));
-        $this->assertGreaterThanOrEqual(1000, $scores[0]['score']);
+        $this->assertEquals(1, count($scores));
+        $this->assertGreaterThanOrEqual(40, $scores[0]['score']);
+    }
+
+    public function testScoreImageSetWithPoorlyMatchingColor()
+    {
+        $images = $this->service->readColorCsv('data/test/extracted-colors-test.csv', 10);
+
+        // Nothing close to this is in the CSV, therefore neither image should match.
+        $searchColor = '010101';
+
+        $scores = $this->service->scoreImageSet($searchColor, $images);
+        $this->assertEquals(0, count($scores));
     }
 
     public function testScoreImageSetWithMinimumScore()

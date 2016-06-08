@@ -22,7 +22,7 @@ $(function() {
 
     // Perform a search for the chosen color.
     function search(color) {
-        $.ajax("/tin-eye-search?color=" + color, {
+        $.ajax("/search?color=" + color, {
             success: function(data) {
                 console.log('Received JSON response from search server:');
                 console.log(data);

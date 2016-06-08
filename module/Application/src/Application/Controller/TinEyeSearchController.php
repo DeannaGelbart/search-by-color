@@ -4,7 +4,7 @@ namespace Application\Controller;
 
 use Zend\View\Model\JsonModel;
 
-// This class provides a search-by-color service using the TinEye API.
+// This class provides a search-by-color web service backed by the TinEye API.
 // This class is included in the project in case you would like to try the TinEye API for this.
 // Normally this application uses SearchController.php instead.
 // 
@@ -23,7 +23,6 @@ class TinEyeSearchController extends AbstractSearchController
         $this->tinEyeConfig = $tinEyeConfig;
     }
 
-    // This JSON web service performs a search by color.
     // Please see the comments for AbstractSearchController.searchAction.
     //
     // For this controller, the route is /tin-eye-search instead of /search.
