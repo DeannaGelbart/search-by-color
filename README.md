@@ -4,14 +4,15 @@ This webapp lets the user search a collection of images by color, using a color 
 
 [Try your own searches with a running installation of this webapp](http://www.colorcoordinator.focalfilter.com)
 
-The app is a single-page jQuery/Bootstrap UI which is backed by JSON web services built in ZF2. There is also a command line tool (built as a ZF2 console controller) which creates the search index. The unit tests are implemented in PHPUnit. 
+The user interface is a single-page app ([html](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/view/application/index/index.phtml), [js](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/public/js/colorcoordinator.js)) built using jQuery and Bootstrap. 
 
-This webapp uses its own code to process the user's searches, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
+The UI performs searches using a [JSON web service](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/SearchController.php) implemented as a Zend Framework 2 controller.
 
-Guide to the source code
-------------------------
+There is also a [command line tool](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php) (built as a ZF2 console controller) which creates the search index. 
 
-... just an overview is fine ... can give the location of the tests ...
+The unit tests are implemented in PHPUnit. Tests for the color handling code are [here](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/test/ApplicationTest/Service/ImageServiceTest.php). Better test coverage for the controllers is coming soon. 
+
+The JSON web service that performs the user's searches doesn't rely on anything external, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
 
 Customizing this project for your needs
 ---------------------------------------
