@@ -40,7 +40,7 @@ $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 
 This webapp uses its own search code, but it relies on TinEye to extract the colors from the images ahead of time. 
 You can extract the colors like this:
 ```
-for i in public/img/art/thumbs/*jpg ;  do   php public/index.php console extract-colors $i >> extracted-colors.csv; done
+for i in public/img/art/thumbs/*jpg ;  do php public/index.php console extract-colors $i >> extracted-colors.csv; done
 ```
 
 If you want users to be connected to TinEye search instead of this project's homegrown search code, 
