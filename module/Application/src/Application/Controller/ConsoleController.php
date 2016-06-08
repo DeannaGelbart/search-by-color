@@ -2,19 +2,31 @@
 
 namespace Application\Controller;
 
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\View\Model\ConsoleModel;
 use TinEye\Image;
 
 
-class ConsoleController extends AbstractTinEyeClientController
+class ConsoleController extends AbstractActionController
 {
+    private $utilitiesService;
+    private $tinEyeService;
+    private $tinEyeConfig;
+
+    public function __construct($utilitiesService, $tinEyeService, $tinEyeConfig)
+    {
+        $this->utilitiesService = $utilitiesService;
+        $this->tinEyeService = $tinEyeService;
+        $this->tinEyeConfig = $tinEyeConfig;
+    }
+
     public function rgbToHex($rgb)
     {
         return sprintf('%02x', $rgb[0]) . sprintf('%02x', $rgb[1]) . sprintf('%02x', $rgb[2]);
     }
 
-// This command line console action extracts the dominant colors from an image using the TinEye API.
+    // This command line console action extracts the dominant colors from an image using the TinEye API.
     //
     // Usage:
     // $ php public/index.php console extract-colors <imageFilename> <imageName>
@@ -44,7 +56,7 @@ class ConsoleController extends AbstractTinEyeClientController
         $filename = $request->getParam('imageFilename');
         $name = $request->getParam('imageName');
         if (!isset($name)) {
-            $name = $this->readableName($filename);
+            $name = $this->utilitiesService->readableName($filename);
         }
 
         $image = new Image($filename, '', basename($filename));

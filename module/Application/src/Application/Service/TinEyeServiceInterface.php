@@ -2,6 +2,7 @@
 
 namespace Application\Service;
 
+// Interface provided for testability.
 interface TinEyeServiceInterface
 {
     // Create a ready-to-use MulticolorEngineRequest.

@@ -22,6 +22,16 @@ return array(
                     ),
                 ),
             ),
+            'search' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/search',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Search',
+                        'action'     => 'search',
+                    ),
+                ),
+            ),
             'tin-eye-search' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -71,9 +81,10 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
+            'Application\Controller\Search' => Controller\SearchController::class,
         ),
         'factories' => array(
-            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeProxyControllerFactory',
+            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeSearchControllerFactory',
             'Application\Controller\Console'  => 'Application\Controller\Factory\ConsoleControllerFactory',
         )
     ),

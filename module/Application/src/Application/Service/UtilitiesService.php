@@ -1,20 +1,10 @@
 <?php
 
-namespace Application\Controller;
+namespace Application\Service;
 
-use Zend\Mvc\Controller\AbstractActionController;
-
-abstract class AbstractTinEyeClientController extends AbstractActionController
+// A class for self-contained utility methods.
+class UtilitiesService
 {
-    protected $tinEyeService;
-    protected $tinEyeConfig;
-
-    public function __construct($tinEyeService, $tinEyeConfig)
-    {
-        $this->tinEyeService = $tinEyeService;
-        $this->tinEyeConfig = $tinEyeConfig;
-    }
-
     // Reconstruct a more human readable name from an image filename.
     public function readableName($filename)
     {

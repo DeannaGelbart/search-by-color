@@ -1,3 +1,2 @@
-# Because of TinEye API fees, keep this app out of search engines.
 User-agent: *
 Disallow: /
