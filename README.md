@@ -63,7 +63,7 @@ TinEye is owned by Idée Inc. and any uses of the TinEye API through the colorco
 
 All third-party code used in the colorcoordinator-zf2 project is under the license terms of the copyright holders.
 
-The code written for the colorcoordinator-zf2 project is copyright David Gelbart and can be used under the MIT License. 
+The code written specifically for the colorcoordinator-zf2 project is copyright David Gelbart and can be used under the MIT License. 
 
 
 
