@@ -1,4 +1,4 @@
-This webapp lets a user search a collection of images by color.
+This webapp lets the user search a collection of images by color, using a color picker.
 
 [Screenshot](http://i.imgur.com/ANOpHZF.png)
 
