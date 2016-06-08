@@ -18,7 +18,7 @@ Customizing this project for your needs
 
 Customize the UI text by editing module/Application/view/application/index/index.phtml.
 
-The art images must be placed under public/img/art/ 
+The images to be searched must be placed under public/img/art/ 
 
 Thumbnails must be placed under public/img/art/thumbs, with the same filenames as the full size images. The thumbnails can be created using ImageMagick:
 ```
@@ -28,7 +28,7 @@ $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 
 ```
 This webapp assumes both the original image files and the thumbnails have a .jpg suffix. 
 
-This webapp uses its own search code, but it relies on TinEye to extract the dominant colors from the images ahead of time. You must have a TinEye API subscription for this. Rename config/autoload/local.php.dist to config/autoload/local.php, and place your TinEye API username and password there. You can then extract the colors with the following command. This data is stored in a CSV file in the ZF2 data folder.
+This webapp uses its own search code, but it relies on TinEye to extract the dominant colors from the images ahead of time. There is a command line console tool in this project to do that (ConsoleController). You must have a TinEye API subscription to use it. Rename config/autoload/local.php.dist to config/autoload/local.php, and place your TinEye API username and password there. You can then extract the colors with the following command. This data is stored in a CSV file in the ZF2 data folder.
 ```
 for i in public/img/art/thumbs/*jpg ;  do php public/index.php console extract-colors $i >> data/extracted-colors.csv; done
 ```
