@@ -1,6 +1,6 @@
 $(function() {
 
-    var initialColor = '625194';
+    var initialColor = '3f3659';
 
     // Set up Bootstrap colorpicker (http://mjolnic.com/bootstrap-colorpicker/)
     $('#colorpicker').colorpicker({
@@ -60,10 +60,12 @@ $(function() {
     $('#colorpicker').colorpicker().on('changeColor', function (e) {
         var color = e.color.toHex().replace('#', '');
 
-        // Clear the image gallery.
+        // Clear the image gallery
         $('#links').empty();
 
         // Perform color search.
+        console.log('Searching for RGB color ' + color);
+        $('#gallery-prompt').text('Searching...');
         search(color);
     });
 

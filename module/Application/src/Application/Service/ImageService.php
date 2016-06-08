@@ -48,7 +48,6 @@ class ImageService
     // $imagesDominantColors must be the array returned by readColorCsv().
     // Images scoring lower than $minimumScore will not be returned by this function.
     //
-    //
     // This function returns an an array each element of which is an associative array representing one image:
     //   'filename': e.g., 'Ready_Set_Go.jpg'
     //   'name': e.g., 'Ready, Set, Go'
@@ -61,7 +60,7 @@ class ImageService
     // tells TinEye to extract will affect the scoring, since it will affect $imagesDominantColors.
     // You may want to play with the number to find the best results for your image set.
     //
-    // The scoring formula is ad hoc and could benefit from more tuning and/or expertise.
+    // The scoring formula is ad hoc and could *surely* benefit from more tuning and expertise.
     public function scoreImageSet($searchColor, $imagesDominantColors, $minimumScore = 0)
     {
         $results = array();
@@ -87,13 +86,13 @@ class ImageService
             //
             // (Perhaps we could improve performance in the future if, rather than only looking at the closest
             // matching color, we also look at further-but-not-too-far colors.)
-            $distanceThreshold = 4;
+            $distanceThreshold = 4.5;
             if ($closestMatchDistance < $distanceThreshold) {
 
                 // Prevent distance-based part of score from getting so high that it swamps the weight.
                 $d = $closestMatchDistance;
-                if ($d < 0.01) {
-                    $d = 0.01;
+                if ($d < 0.1) {
+                    $d = 0.1;
                 }
 
                 // Distance-based part of score.

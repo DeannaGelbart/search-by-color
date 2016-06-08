@@ -10,9 +10,8 @@ use Zend\View\Model\JsonModel;
 // For instructions on how to create the file, see https://github.com/dgelbart/colorcoordinator-zf2/blob/master/README.md
 class SearchController extends AbstractSearchController
 {
-    const MAX_IMAGES_TO_RETURN = 20;
     const MINIMUM_COLOR_WEIGHT = 10;
-    const MINIMUM_IMAGE_SCORE = 5;
+    const MINIMUM_IMAGE_SCORE = 3;
 
     private $imageService;
 
@@ -20,6 +19,18 @@ class SearchController extends AbstractSearchController
     {
         $this->imageService = $imageService;
     }
+
+    // Comparison function for descending order sort.
+    public function compareMatchesByScore($a, $b)
+    {
+        $a = $a['score'];
+        $b = $b['score'];
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a > $b) ? -1 : 1;
+    }
+
 
     // Please see the comments for AbstractSearchController.searchAction.
     public function searchAction()
@@ -37,11 +48,10 @@ class SearchController extends AbstractSearchController
         if (isset($imagesDominantColors['error'])) {
             return $this->errorResponse($imagesDominantColors['error']);
         }
-        
+
+        // Return matching images, in descending order of the match quality score.
         $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE);
-        
-        // Now we need to sort by score, and only take the top N scoring images. 
-        // self::MAX_IMAGES_TO_RETURN
+        usort($matches, array($this, "compareMatchesByScore"));
 
         return new JsonModel(array(
             'match_count' => count($matches),

@@ -97,7 +97,7 @@ class ImageServiceTest extends PHPUnit_Framework_TestCase
         $images = $this->service->readColorCsv('data/test/extracted-colors-test.csv', 10);
 
         // Nothing close to this is in the CSV, therefore neither image should match.
-        $searchColor = '010101';
+        $searchColor = '000000';
 
         $scores = $this->service->scoreImageSet($searchColor, $images);
         $this->assertEquals(0, count($scores));
