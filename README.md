@@ -1,6 +1,6 @@
 This webapp lets the user search a collection of images by color, using a color picker. Search results are shown as a thumbnail gallery and the user can select an individual image for a larger view.
 
-[Screenshot](http://i.imgur.com/ANOpHZF.png)
+[Screenshot](http://i.imgur.com/zyaHYq9.png)
 
 [Try your own searches with a running installation of this webapp](http://www.colorcoordinator.focalfilter.com)
 
