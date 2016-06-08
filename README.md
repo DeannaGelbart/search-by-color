@@ -1,8 +1,8 @@
 This webapp lets a user search a collection of images by color.
 
-You can see it in action at: ...
+[Screenshot](http://i.imgur.com/rcRshkZ.png)
 
-Screenshot: ...
+[Try your own searches](colorcoordinator.focalfilter.com)
 
 Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
 
