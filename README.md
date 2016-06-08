@@ -1,13 +1,18 @@
-This webapp lets a user search a collection of images by color.
+This Zend Framework 2 webapp lets a user search a collection of images by color.
 
 [Screenshot](http://i.imgur.com/ANOpHZF.png)
 
 [Try your own searches](http://www.colorcoordinator.focalfilter.com)
 
-Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
+Guide to the source code
+------------------------
 
-Installation
-------------
+(tests). This searches... 
+
+(reword, explain what it's used for and what it's not) Behind the scenes this app makes use of the [TinEye MulticolorEngine](https://services.tineye.com/MulticolorEngine) API.
+
+Installing this project on your own server
+------------------------------------------
 
 Composer and web server setup are the same as in the installation instructions for the [Zend Skeleton Application] (https://github.com/zendframework/ZendSkeletonApplication), which was the starting point for this app.
 
@@ -21,8 +26,8 @@ $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker publ
 
 You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
-Customization
--------------
+Customizing this project for your needs
+---------------------------------------
 
 Customize the UI text by editing module/Application/view/application/index/index.phtml.
 
