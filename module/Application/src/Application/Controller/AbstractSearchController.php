@@ -26,6 +26,22 @@ abstract class AbstractSearchController extends AbstractActionController
         ));
         return $error;
     }
+    
+    protected function noColorError() 
+    {
+        return $this->errorResponse('You must pass this service a GET parameter named color (RGB represented as 6 hex digits).');        
+    }
+    
+    protected function isValidColor($color)
+    {
+        // Check for 6 hex digits. 
+        return preg_match('/^[0-9A-Za-z]{6}$/', $color);    
+    }
+
+    protected function badColorFormatError()
+    {
+        return $this->errorResponse('The color you pass to this service must be RGB represented as 6 hex digits.');
+    }
 
     // This JSON web service performs a TinEye API search by color.
     //

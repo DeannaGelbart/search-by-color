@@ -15,11 +15,11 @@ class SearchController extends AbstractSearchController
     public function searchAction()
     {
         if (!isset($_GET['color'])) {
-            return $this->errorResponse('You must pass this service a GET parameter named color (RGB represented as 6 hex digits).');
+            return $this->noColorError();
         }
         $color = $_GET['color'];
-        if (!preg_match('/^[0-9A-Za-z]{6}$/', $color)) {
-            return $this->errorResponse('The color you pass to this service must be RGB represented as 6 hex digits.');
+        if (!($this->isValidColor($color))) {
+            return $this->badColorFormatError();
         }
 
         // TODO
