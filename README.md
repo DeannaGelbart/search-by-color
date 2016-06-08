@@ -56,7 +56,14 @@ $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker publ
 
 You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
 
+Legal
+-----
 
+TinEye is a copyright of Idée Inc.
+
+All third-party code used in this colorcoordinator-zf2 project is under the license terms of the copyright holders.
+
+The code written for this colorcoordinator-zf2 project is copyright David Gelbart and can be used under the MIT License. 
 
 
 
