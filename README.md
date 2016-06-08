@@ -6,7 +6,7 @@ This webapp lets the user search a collection of images by color, using a color 
 
 The app is a single-page jQuery/Bootstrap UI which is backed by JSON web services built in ZF2. There is also a command line tool (built as a ZF2 console controller) which creates the search index. The unit tests are implemented in PHPUnit. 
 
-This webapp uses its own code to process the user's searches, but the above-mentioned command line uses the TinEye color extraction API to extract the dominant colors from the images. That tool only needs to be used once, to build the search index when you first set up this webapp.
+This webapp uses its own code to process the user's searches, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
 
 Guide to the source code
 ------------------------
