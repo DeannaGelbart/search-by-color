@@ -37,7 +37,7 @@ return array(
                 'options' => array(
                     'route'    => '/tin-eye-search',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\TinEye',
+                        'controller' => 'Application\Controller\TinEyeSearch',
                         'action'     => 'search',
                     ),
                 ),
@@ -81,10 +81,10 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
-            'Application\Controller\Search' => Controller\SearchController::class,
         ),
         'factories' => array(
-            'Application\Controller\TinEye'  => 'Application\Controller\Factory\TinEyeSearchControllerFactory',
+            'Application\Controller\TinEyeSearch'  => 'Application\Controller\Factory\TinEyeSearchControllerFactory',
+            'Application\Controller\Search'  => 'Application\Controller\Factory\SearchControllerFactory',
             'Application\Controller\Console'  => 'Application\Controller\Factory\ConsoleControllerFactory',
         )
     ),
