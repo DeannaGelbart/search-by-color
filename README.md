@@ -2,7 +2,7 @@ This webapp lets the user search a collection of images by color, using a color 
 
 [Screenshot](http://i.imgur.com/ANOpHZF.png)
 
-[Try your own searches](http://www.colorcoordinator.focalfilter.com)
+[Try your own searches with a running installation of this webapp](http://www.colorcoordinator.focalfilter.com)
 
 The app is a single-page jQuery/Bootstrap UI which is backed by JSON web services built in ZF2. There is also a command line tool (built as a ZF2 console controller) which creates the search index using the TinEye color extraction API. The unit tests are implemented in PHPUnit. 
 
