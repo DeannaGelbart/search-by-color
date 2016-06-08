@@ -6,9 +6,9 @@ This webapp lets the user search a collection of images by color, using a color 
 
 The user interface is a single-page app ([html](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/view/application/index/index.phtml), [js](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/public/js/colorcoordinator.js)) built using jQuery and Bootstrap. 
 
-The UI performs searches using a [JSON web service](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/SearchController.php) implemented as a Zend Framework 2 controller.
+The UI performs searches using a [JSON web service built as a Zend Framework 2 controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/SearchController.php).
 
-There is also a [command line tool](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php) (built as a ZF2 console controller) which creates the search index. 
+The search index is created ahead of time using a [command line tool built as a ZF2 console controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php) 
 
 The unit tests are implemented in PHPUnit. Tests for the color handling code are [here](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/test/ApplicationTest/Service/ImageServiceTest.php). Better test coverage for the controllers is coming soon. 
 
