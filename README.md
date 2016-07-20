@@ -10,7 +10,7 @@ The UI performs searches using a [JSON web service built as a Zend Framework 2 c
 
 The search index is created ahead of time using a [command line tool built as a ZF2 console controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php) 
 
-PHPUnit tests for the color handling logic are [here](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/test/ApplicationTest/Service/ImageServiceTest.php). Better test coverage for the controllers is coming soon. 
+PHPUnit tests for the color handling logic are [here](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/test/ApplicationTest/Service/ImageServiceTest.php). 
 
 The JSON web service that performs the user's searches doesn't rely on anything external, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
 
