@@ -27,6 +27,9 @@ $ cd public/img/art
 $ mkdir thumbs
 $ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 -format jpg -quality 75 -path thumbs *.jpg *.JPG
 ```
+
+The score and distance thresholds passed to scoreImageSet() need to be tuned for your data set. 
+
 This webapp assumes both the original image files and the thumbnails have a .jpg suffix. 
 
 This webapp uses its own search code, but it relies on TinEye to extract the dominant colors from the images ahead of time. There is a command line console tool in this project to do that (ConsoleController). You must have a TinEye API subscription to use it. Rename config/autoload/local.php.dist to config/autoload/local.php, and place your TinEye API username and password there. (If you are using IP address based authentication for the API, just modify TinEyeService.php to not pass the username and password.) You can then extract the colors with the following command. This data is stored in a CSV file in the ZF2 data folder.
