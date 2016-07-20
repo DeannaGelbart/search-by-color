@@ -7,6 +7,28 @@ use \Color; // Color routines from https://github.com/matthewbaggett/php-color
 // Library for dealing with images and colors.
 class ImageService
 {
+    // Return Euclidean distance in Lab colorspace
+    //
+    // Like the similarly-named function in https://github.com/hasbridge/php-color/blob/master/Color.php but
+    // with a bugfix in order to compute Euclidean distance.
+    //
+    // Results should match http://colormine.org/delta-e-calculator/
+    public function getEuclideanDistanceLab(Color $color1, Color $color2)
+    {
+        $lab1 = $color1->toLabCie();
+        $lab2 = $color2->toLabCie();
+
+        $lDiff = ($lab2['l'] - $lab1['l'])*($lab2['l'] - $lab1['l']);
+        $aDiff = ($lab2['a'] - $lab1['a'])*($lab2['a'] - $lab1['a']);
+        $bDiff = ($lab2['b'] - $lab1['b'])*($lab2['b'] - $lab1['b']);
+
+        $delta = sqrt($lDiff + $aDiff + $bDiff);
+
+        return $delta;
+    }
+
+
+
     // This searches for $hexSearchColor in the array of colors $hexColors and returns
     // an associative array: 
     //   'index': index of the color in $hexColors which is nearest to $hexSearchColor
@@ -29,10 +51,11 @@ class ImageService
         }
 
         $indexOfClosest = 0;
-        $distanceToClosest = $searchColor->getDistanceLabFrom($colors[$indexOfClosest]);
+        $distanceToClosest = $this->getEuclideanDistanceLab($searchColor, $colors[$indexOfClosest]);
+
 
         for ($i = 1; $i < count($colors); $i++) {
-            $dist = $searchColor->getDistanceLabFrom($colors[$i]);
+            $dist = $this->getEuclideanDistanceLab($searchColor, $colors[$i]);
             if ($dist < $distanceToClosest) {
                 $distanceToClosest = $dist;
                 $indexOfClosest = $i;
@@ -47,21 +70,24 @@ class ImageService
     // $searchColor must be a 6-digit RGB hex string e.g. '3F8A34'.
     // $imagesDominantColors must be the array returned by readColorCsv().
     // Images scoring lower than $minimumScore will not be returned by this function.
+    // Image colors further away than $maximumDistance (Euclidean distance in Lab colorspace) will be ignored.
     //
     // This function returns an an array each element of which is an associative array representing one image:
     //   'filename': e.g., 'Ready_Set_Go.jpg'
     //   'name': e.g., 'Ready, Set, Go'
-    //   'score': A numerical score for how well the image matched the search color.
+    //   'score': A numerical score for how well the image matched the search color. Higher score is better.
     //   and for debug/diagnostic purposes:
     //   'distance': Euclidean distance in Lab color space between search color and closest matching color.
     //   'weight': Importance of closest matching color in the image.
     //
-    // Note that the number of dominant colors that ConsoleController.extractColorsAction
-    // tells TinEye to extract will affect the scoring, since it will affect $imagesDominantColors.
-    // You may want to play with the number to find the best results for your image set.
+    // Note that the number of dominant colors that we extract when building the index of dominant
+    // colors is partly a choice of the color extraction code, not just an inherent property of an image.
+    // You may want to tune that number to find the best results for your image set.
     //
-    // The scoring formula is ad hoc and could *surely* benefit from more tuning and expertise.
-    public function scoreImageSet($searchColor, $imagesDominantColors, $minimumScore = 0)
+    // The scoring formula is ad hoc and could benefit from more tuning and expertise.
+    //
+    // YOU ARE EXPECTED TO TUNE $minimumScore AND $maximumDistance FOR YOUR DATA SET.    
+    public function scoreImageSet($searchColor, $imagesDominantColors, $minimumScore = 0, $maximumDistance = 100)
     {
         $results = array();
 
@@ -86,8 +112,7 @@ class ImageService
             //
             // (Perhaps we could improve performance in the future if, rather than only looking at the closest
             // matching color, we also look at further-but-not-too-far colors.)
-            $distanceThreshold = 4.5;
-            if ($closestMatchDistance < $distanceThreshold) {
+            if ($closestMatchDistance < $maximumDistance) {
 
                 // Prevent distance-based part of score from getting so high that it swamps the weight.
                 $d = $closestMatchDistance;

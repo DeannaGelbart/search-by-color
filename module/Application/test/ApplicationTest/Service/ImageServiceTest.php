@@ -87,7 +87,7 @@ class ImageServiceTest extends PHPUnit_Framework_TestCase
         // should get a large score.
         $searchColor = '242128';
 
-        $scores = $this->service->scoreImageSet($searchColor, $images);
+        $scores = $this->service->scoreImageSet($searchColor, $images, 4, 10);
         $this->assertEquals(1, count($scores));
         $this->assertGreaterThanOrEqual(40, $scores[0]['score']);
     }
@@ -99,7 +99,7 @@ class ImageServiceTest extends PHPUnit_Framework_TestCase
         // Nothing close to this is in the CSV, therefore neither image should match.
         $searchColor = '000000';
 
-        $scores = $this->service->scoreImageSet($searchColor, $images);
+        $scores = $this->service->scoreImageSet($searchColor, $images, 4, 10);
         $this->assertEquals(0, count($scores));
     }
 

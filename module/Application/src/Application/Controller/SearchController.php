@@ -12,7 +12,8 @@ class SearchController extends AbstractSearchController
 {
     const MAX_IMAGES_TO_RETURN = 20;
     const MINIMUM_COLOR_WEIGHT = 10;
-    const MINIMUM_IMAGE_SCORE = 3;
+    const MINIMUM_IMAGE_SCORE = 1.7;
+    const MAXIMUM_COLOR_DISTANCE = 40;
 
     private $imageService;
 
@@ -51,7 +52,7 @@ class SearchController extends AbstractSearchController
         }
 
         // Return matching images, in descending order of the match quality score.
-        $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE);
+        $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE, self::MAXIMUM_COLOR_DISTANCE);
         usort($matches, array($this, "compareMatchesByScore"));
 
         $matchesToReturn = array();
