@@ -12,6 +12,13 @@ PHPUnit tests for the color handling logic are [here](https://github.com/dgelbar
 
 The JSON web service that performs the user's searches doesn't rely on anything external, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
 
+Authorship
+----------
+
+All code written for specifically this project is by Deanna Gelbart and can be used under the MIT License. 
+
+All third-party code used in the colorcoordinator-zf2 project is identified as such in the source code, and is under the license terms of the copyright holders.
+
 Customizing this project for your needs
 ---------------------------------------
 
@@ -55,18 +62,5 @@ $ cp -r vendor/mjolnic/bootstrap-colorpicker/dist/img/bootstrap-colorpicker publ
 ```
 
 You then have to place the [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) in vendor/tineyeservices_php. To meet ZF2 autoloader conventions, rename the filenames to match their class name. For example, rename metadata_request.php to MetadataRequest.php since the class name is MetadataRequest. And add "namespace TinEye;" at the beginning of each file.
-
-Legal
------
-
-TinEye is owned by Idée Inc. and any uses of the TinEye API through the colorcoordinator-zf2 project must respect Idée's terms of service.
-
-All third-party code used in the colorcoordinator-zf2 project is under the license terms of the copyright holders.
-
-All code written for the colorcoordinator-zf2 project is by Deanna Gelbart and can be used under the MIT License. 
-
-
-
-
 
 
