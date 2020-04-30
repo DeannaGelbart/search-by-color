@@ -2,8 +2,6 @@ This webapp lets the user search a collection of images by color, using a color 
 
 [Screenshot](http://i.imgur.com/zyaHYq9.png)
 
-[Try your own searches with a running installation of this webapp](http://www.colorcoordinator.focalfilter.com)
-
 The user interface is a single-page app ([html](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/view/application/index/index.phtml), [js](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/public/js/colorcoordinator.js)) built using jQuery and Bootstrap. 
 
 The UI performs searches using a [JSON web service built as a Zend Framework 2 controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/SearchController.php), using [this collection of color handling logic](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Service/ImageService.php).
