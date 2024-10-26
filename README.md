@@ -1,6 +1,6 @@
 This webapp lets the user search a collection of images by color, using a color picker. Search results are shown as a thumbnail gallery and the user can select an individual image for a larger view.
 
-[Screenshot](http://i.imgur.com/zyaHYq9.png)
+![zyaHYq9](https://github.com/user-attachments/assets/61134851-d1c8-41bb-a84d-79ce62176427)
 
 The user interface is a single-page app ([html](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/view/application/index/index.phtml), [js](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/public/js/colorcoordinator.js)) built using jQuery and Bootstrap. 
 
