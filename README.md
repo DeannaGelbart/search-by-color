@@ -12,13 +12,6 @@ PHPUnit tests for the color handling logic are [here](https://github.com/dgelbar
 
 The JSON web service that performs the user's searches doesn't rely on anything external, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
 
-Authorship
-----------
-
-All code written for specifically this project is by Deanna Gelbart and can be used under the MIT License. 
-
-All third-party code used in the colorcoordinator-zf2 project is identified as such in the source code, and is under the license terms of the copyright holders.
-
 Customizing this project for your needs
 ---------------------------------------
 
