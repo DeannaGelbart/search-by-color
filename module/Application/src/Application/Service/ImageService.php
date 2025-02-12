@@ -2,7 +2,7 @@
 
 namespace Application\Service;
 
-use \Color; // Color routines from https://github.com/matthewbaggett/php-color
+use Color; // Correct import for the hasbridge/php-color package
 
 // Library for dealing with images and colors.
 class ImageService
@@ -171,6 +171,13 @@ class ImageService
             if (($fieldCount % 2 == 0) && ($fieldCount >= 4)) {
                 $result = array('filename' => $fields[0], 'name' => $fields[1]);
                 
+                // Get image size if available
+                $imagePath = 'public/img/art/' . $fields[0];
+                if (file_exists($imagePath)) {
+                    $imageSize = filesize($imagePath);
+                    $result['size'] = $imageSize;
+                }
+
                 $colors = array();
                 for ($i = 2; $i < $fieldCount; $i += 2) {
                     $color = array('rgb' => $fields[$i], 'weight' => $fields[$i + 1]);
@@ -187,6 +194,20 @@ class ImageService
         fclose($handle);
 
         return $results;
+    }
+
+    // Add method to sort by size
+    public function sortMatchesBySize($matches, $ascending = true) 
+    {
+        usort($matches, function($a, $b) use ($ascending) {
+            if (!isset($a['size']) || !isset($b['size'])) {
+                return 0;
+            }
+            return $ascending ? 
+                ($a['size'] - $b['size']) : 
+                ($b['size'] - $a['size']);
+        });
+        return $matches;
     }
 
     // Reconstruct a more human readable name from an image filename.

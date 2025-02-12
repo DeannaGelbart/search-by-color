@@ -1,6 +1,7 @@
 $(function() {
-
     var initialColor = '3f3659';
+    var currentSortBy = 'score';
+    var currentSortOrder = 'desc';
 
     // Set up Bootstrap colorpicker (http://mjolnic.com/bootstrap-colorpicker/)
     $('#colorpicker').colorpicker({
@@ -22,16 +23,26 @@ $(function() {
 
     // Perform a search for the chosen color.
     function search(color) {
-        $.ajax("/search?color=" + color, {
+        var queryParams = "color=" + color;
+        if (currentSortBy !== 'score') {
+            queryParams += "&sort=" + currentSortBy;
+        }
+        if (currentSortOrder === 'asc') {
+            queryParams += "&order=asc";
+        }
+
+        $.ajax("/search?" + queryParams, {
             success: function(data) {
                 console.log('Received JSON response from search server:');
                 console.log(data);
+
+                // Clear existing gallery
+                $('#links').empty();
 
                 if (data.match_count == 0) {
                     $('#gallery-prompt').text('No matching art found. You could try another color.');
                 } else {
                     $('#gallery-prompt').text('Select a thumbnail to see a larger image:');
-
                 }
 
                 // Create the image gallery.
@@ -44,8 +55,10 @@ $(function() {
                     var name = data.matches[imageIndex].name;
                     var imagePath = '/img/art/' + encodeURIComponent(data.matches[imageIndex].filename);
                     var thumbnailPath = '/img/art/thumbs/' + encodeURIComponent(data.matches[imageIndex].filename);
-
-                    var a = '<a href="' + imagePath + '" title="' + name + '" data-gallery>';
+                    var size = data.matches[imageIndex].size;
+                    
+                    var sizeDisplay = size ? ' (' + Math.round(size/1024) + ' KB)' : '';
+                    var a = '<a href="' + imagePath + '" title="' + name + sizeDisplay + '" data-gallery>';
                     var img = '<img src="' + thumbnailPath + '" alt="' + name + '" class="gallery-thumbnail">';
 
                     $('#links').append(a + img + '</a>');
@@ -67,6 +80,29 @@ $(function() {
         console.log('Searching for RGB color ' + color);
         $('#gallery-prompt').text('Searching...');
         search(color);
+    });
+
+    // Add sort controls event handlers
+    $('.sort-option').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var sortBy = $this.data('sort');
+        
+        if (sortBy === currentSortBy) {
+            // Toggle order if clicking same sort option
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+        } else {
+            currentSortBy = sortBy;
+            currentSortOrder = 'asc'; // Default to ascending for size
+        }
+        
+        // Update active states
+        $('.sort-option').removeClass('active');
+        $this.addClass('active');
+        
+        // Perform new search with current color and sort settings
+        var currentColor = $('#colorpicker').colorpicker('getValue').replace('#', '');
+        search(currentColor);
     });
 
     search(initialColor);

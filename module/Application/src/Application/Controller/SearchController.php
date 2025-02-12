@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Zend\View\Model\JsonModel;
+use Application\Service\ImageService;
 
 // This class provides a search-by-color web service.
 //
@@ -53,7 +54,16 @@ class SearchController extends AbstractSearchController
 
         // Return matching images, in descending order of the match quality score.
         $matches = $this->imageService->scoreImageSet($searchColor, $imagesDominantColors, self::MINIMUM_IMAGE_SCORE, self::MAXIMUM_COLOR_DISTANCE);
-        usort($matches, array($this, "compareMatchesByScore"));
+        
+        // Handle sorting
+        $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'score';
+        $sortOrder = isset($_GET['order']) ? $_GET['order'] === 'asc' : false;
+        
+        if ($sortBy === 'size') {
+            $matches = $this->imageService->sortMatchesBySize($matches, $sortOrder);
+        } else {
+            usort($matches, array($this, "compareMatchesByScore"));
+        }
 
         $matchesToReturn = array();
         $returnCount = 0;

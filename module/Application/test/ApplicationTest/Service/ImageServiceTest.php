@@ -123,4 +123,37 @@ class ImageServiceTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('A Walk In The Park', $this->service->readableName('A_Walk_In_The_Park.jpg'));
     }
+
+    public function testSortMatchesBySize()
+    {
+        $matches = array(
+            array('filename' => 'big.jpg', 'size' => 2000),
+            array('filename' => 'small.jpg', 'size' => 1000),
+            array('filename' => 'medium.jpg', 'size' => 1500)
+        );
+
+        // Test ascending order
+        $sorted = $this->service->sortMatchesBySize($matches, true);
+        $this->assertEquals('small.jpg', $sorted[0]['filename']);
+        $this->assertEquals('medium.jpg', $sorted[1]['filename']);
+        $this->assertEquals('big.jpg', $sorted[2]['filename']);
+
+        // Test descending order
+        $sorted = $this->service->sortMatchesBySize($matches, false);
+        $this->assertEquals('big.jpg', $sorted[0]['filename']);
+        $this->assertEquals('medium.jpg', $sorted[1]['filename']);
+        $this->assertEquals('small.jpg', $sorted[2]['filename']);
+    }
+
+    public function testSortMatchesBySizeWithMissingSize()
+    {
+        $matches = array(
+            array('filename' => 'big.jpg', 'size' => 2000),
+            array('filename' => 'nosize.jpg'),
+            array('filename' => 'small.jpg', 'size' => 1000)
+        );
+
+        $sorted = $this->service->sortMatchesBySize($matches, true);
+        $this->assertEquals(3, count($sorted), 'Should preserve items without size');
+    }
 }

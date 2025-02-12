@@ -20,10 +20,10 @@ body {
     padding: 5px;
 }
 
- .colorpicker .colorpicker-saturation {
-     width: 200px;
-     height: 200px;
- }
+.colorpicker .colorpicker-saturation {
+    width: 200px;
+    height: 200px;
+}
 
 .colorpicker .colorpicker-hue,
 .colorpicker .colorpicker-alpha {
@@ -34,5 +34,19 @@ body {
 .colorpicker .colorpicker-color,
 .colorpicker .colorpicker-color div {
     height: 30px;
+}
+
+/* Sort controls styling */
+.sort-controls {
+    margin: 15px 0;
+}
+
+.sort-option {
+    margin-left: 5px;
+}
+
+.sort-option.active {
+    background-color: #337ab7;
+    color: white;
 }
 
