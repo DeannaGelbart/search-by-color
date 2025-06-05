@@ -1,4 +1,4 @@
-*2025 note: This is a decade old project that was used by visitors at an art show in 2016! Tech is out of date, if I revive it a lot will need to change.*
+**2025 note: This is a decade old project that was used by visitors at an art show in 2016! Tech is out of date, if I revive it a lot will need to change.**
 
 This webapp lets the user search a collection of images by color, using a color picking tool. Search results are shown as a thumbnail gallery:
 
