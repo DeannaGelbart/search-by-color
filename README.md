@@ -4,40 +4,11 @@ This webapp lets the user search a collection of images by color, using a color 
 
 ![zyaHYq9](https://github.com/user-attachments/assets/61134851-d1c8-41bb-a84d-79ce62176427)
 
-The user interface is a single-page app ([html](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/view/application/index/index.phtml), [js](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/public/js/colorcoordinator.js)) built using jQuery and Bootstrap. 
+The UI is a single-page app with a jQuery front end and a Zend Framework 2 back end.
 
-The UI performs searches using a [JSON web service built as a Zend Framework 2 controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/SearchController.php), using [this collection of color handling logic](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Service/ImageService.php).
+The back end is normally self contained while running without any API dependencies, but the search index, which is a CSV file listing the dominant colors in each image, needs to be built ahead of time using this [TinEye-based command line tool](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php).   There is also the option using the TinEye API to handle the user's searches instead of using the PHP search implementation inside this project. Using TinEye is not the default but there is an alternative controller (TinEyeSearchController) in the project that will do this.
 
-The search index is created ahead of time using a [command line tool built as a ZF2 console controller](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/src/Application/Controller/ConsoleController.php) 
-
-PHPUnit tests for the color handling logic are [here](https://github.com/dgelbart/colorcoordinator-zf2/blob/master/module/Application/test/ApplicationTest/Service/ImageServiceTest.php). 
-
-The JSON web service that performs the user's searches doesn't rely on anything external, but the above-mentioned command line tool uses the TinEye color extraction API to create the search index, which is basically a list of the dominant colors in each image. That tool only needs to be used once, to build the search index when you first set up this webapp.
-
-Customizing this project 
-------------------------
-
-The images to be searched must be placed under public/img/art/ 
-
-Thumbnails must be placed under public/img/art/thumbs, with the same filenames as the full size images. The thumbnails can be created using ImageMagick:
-```
-$ cd public/img/art
-$ mkdir thumbs
-$ mogrify -resize 200x200 -background '#eeeeee' -gravity center -extent 200x200 -format jpg -quality 75 -path thumbs *.jpg *.JPG
-```
-
-The score and distance thresholds passed to scoreImageSet() need to be tuned for your data set. 
-
-This webapp uses its own search code, but it relies on TinEye to extract the dominant colors from the images ahead of time. There is a command line console tool in this project to do that (ConsoleController). You must have a TinEye API subscription to use it. Rename config/autoload/local.php.dist to config/autoload/local.php, and place your TinEye API username and password there. (If you are using IP address based authentication for the API, just modify TinEyeService.php to not pass the username and password.) You can then extract the colors with the following command. This data is stored in a CSV file in the ZF2 data folder.
-```
-for i in public/img/art/thumbs/*jpg ;  do php public/index.php console extract-colors $i >> data/extracted-colors.csv; done
-```
-
-You also have the option of using TinEye to handle the user's searches instead of using the search implementation inside this project. Using TinEye is not the default but there is already a controller (TinEyeSearchController) in the project that will do this. You have to change public/js/colorcoordinator.js to call /tin-eye-search instead of /search.  And you'll need to put the images in the TinEye index which you can do like this:
-```
-$ cd public/img/art/thumbs
-$ for f in *jpg *JPG ; do curl http://USERNAME:PASSWORD@multicolorengine.tineye.com/USERNAME/rest/add/ -F "image=@$f;filename=$f" ; done
-```
+The images to be searched must be placed under public/img/art and thumbnails must be placed under public/img/art/thumbs with the same filenames as the corresponding full size images. 
 
 Running the project
 -------------------
@@ -46,6 +17,6 @@ Composer and web server setup are the same as in the installation instructions f
 
 The colorpicker UI library can be installed using Composer.
 
-The [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) goes vendor/tineyeservices_php. 
+The [TinEye PHP  client library](https://services.tineye.com/developers/multicolorengine/libraries.html) must be placed in the vendor directory manually.
 
 
